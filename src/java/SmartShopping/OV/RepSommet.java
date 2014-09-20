@@ -2,7 +2,7 @@ package SmartShopping.OV;
 
 import java.util.ArrayList;
 
-public class RepSommet extends OVReq{
+public class RepSommet extends OVRep {
 
     private ArrayList<OVSommet> listeSommet; 
 

@@ -235,7 +235,33 @@ public class DaoSmartShopping {
        }
       
        return rep;
-    }
+   }
    
-   
+    public static RepSommet GET_ALL_SOMMETS() throws SQLException {
+       
+       RepSommet rep = new RepSommet();
+       Connection connexion = GET_Connection();
+       
+       try {
+           
+           Statement statement = connexion.createStatement();
+           ResultSet resultat = statement.executeQuery( "SELECT id, numSommet, idCategorie FROM sommet;" );
+           
+            while (resultat.next()) {
+                OVSommet ovSommet = new OVSommet(
+                    resultat.getInt("id"), 
+                    resultat.getInt("numSommet"), 
+                    resultat.getInt("idCategorie")
+                ); 
+                               
+                rep.getListeSommet().add(ovSommet);  
+            }
+ 
+       } catch(SQLException ex) {
+           rep.erreur = true;
+           rep.messageErreur = ex.getMessage();
+       }
+       
+       return rep; 
+   }   
 }

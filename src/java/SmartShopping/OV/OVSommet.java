@@ -1,44 +1,28 @@
 package SmartShopping.OV;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
 public class OVSommet extends OVObject {
-    private Integer numSommet;
-    private Integer idCategorie;
+    private int numSommet;
+    private int idCategorie;
 
-    public OVSommet(String jsonStr) {
-        try {
-            JSONObject object;
-            object = new JSONObject(jsonStr);
-
-            this.setNumSommet(object.getInt("numSommet"));
-            this.setIdCategorie(object.getInt("idCategorie"));
-            this.id = object.getInt("id");
-        } catch (JSONException ex) {
-        }
-    }
-
-    public OVSommet(Integer numSommet, Integer idCategorie) {
-        super();
+    public OVSommet(int id, int numSommet, int idCategorie) {
+        this.id = id;
         this.numSommet = numSommet;
         this.idCategorie = idCategorie;
     }
 
-    public Integer getNumSommet() {
+    public int getNumSommet() {
         return this.numSommet;
     }
 
-    public Integer getIdCategorie() {
+    public int getIdCategorie() {
         return this.idCategorie;
     }
 
-    public void setNumSommet(Integer numSommet) {
+    public void setNumSommet(int numSommet) {
         this.numSommet = numSommet;
     }
 
-    public void setIdCategorie(Integer idCategorie) {
+    public void setIdCategorie(int idCategorie) {
         this.idCategorie = idCategorie;
     }
 
