@@ -2,6 +2,16 @@ package SmartShopping.OV;
 
 import java.util.ArrayList;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Shinthu
+ */
 public class RepSommet extends OVRep {
 
     private ArrayList<OVSommet> listeSommet; 
@@ -12,10 +22,6 @@ public class RepSommet extends OVRep {
     
     public ArrayList<OVSommet> getListeSommet() {
         return this.listeSommet;
-    }
-
-    public void setListeProduit(ArrayList<OVSommet> listeSommet) {
-        this.listeSommet = listeSommet;
     }
 	
 }
