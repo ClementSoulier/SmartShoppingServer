@@ -263,5 +263,50 @@ public class DaoSmartShopping {
        }
        
        return rep; 
-   }   
+   }  
+    
+    public static RepPromotion GET_PROMOTIONS() throws SQLException
+   {
+       RepPromotion rep = new RepPromotion();
+       Connection connexion = GET_Connection();
+       
+       try{
+           
+           Statement statement = connexion.createStatement();
+           ResultSet resultat = statement.executeQuery( "SELECT \n" +
+            "promotion.id, promotion.libellePromotion, promotion.promotion, promotion.dateDebut, promotion.dateFin, \n" +
+            "typepromotion.id, typepromotion.libelleTypePromotion,\n" +
+            "produit.id, produit.nom, produit.prix,\n" +
+            "categorie.id,  categorie.nom\n" +
+            "FROM promotion, typepromotion, produit, categorie\n" +
+            "WHERE promotion.idTypePromotion = typepromotion.id \n" +
+            "AND promotion.idProduit = produit.id\n" +
+            "AND produit.idCategorie = categorie.id;;" );
+           
+            while (resultat.next()) 
+            {
+                OVProduit ovProduit = new OVProduit(
+                    resultat.getInt("produit.id"), 
+                    resultat.getString("produit.nom"), 
+                    new OVCategorie(resultat.getInt("categorie.id"),resultat.getString("categorie.nom")), 
+                    resultat.getDouble("produit.prix")
+                ); 
+                
+                OVTypePromotion ovTypePromotion = new OVTypePromotion(resultat.getString("typepromotion.libelleTypePromotion"));
+                
+                OVPromotion ovPromotion = new OVPromotion(ovTypePromotion, ovProduit,resultat.getString("promotion.libellePromotion"), resultat.getFloat("promotion.promotion"), resultat.getDate("promotion.dateDebut"), resultat.getDate("promotion.dateFin"));
+                
+                
+                               
+                rep.getListePromotion().add(ovPromotion);  
+            }
+ 
+       }
+       catch(SQLException ex){
+           rep.erreur = true;
+           rep.messageErreur = ex.getMessage();
+       }
+       
+       return rep; 
+   }
 }
