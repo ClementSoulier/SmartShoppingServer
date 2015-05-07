@@ -309,4 +309,37 @@ public class DaoSmartShopping {
        
        return rep; 
    }
+    
+    public static RepNotification GET_NOTIFICATIONS(OVNotification ovNotification) throws SQLException
+   {
+       RepNotification rep = new RepNotification();
+       Connection connexion = GET_Connection();
+       
+       try{
+           
+           Statement statement = connexion.createStatement();
+           ResultSet resultat = statement.executeQuery( "SELECT produit.id, categorie.id, produit.nom, categorie.nom, produit.prix FROM produit, categorie WHERE produit.idCategorie = categorie.id;" );
+           
+            while (resultat.next()) 
+            {
+                OVNotification ovNotification = new OVNotification(
+                    resultat.getInt("notification.id"), 
+                    resultat.getInt("notification.distance"),
+                    resultat.getBoolean("notification.responseNeeded"),
+                    resultat.getString("notification.texte")
+                ); 
+                               
+                rep.getListeNotification().add(ovNotification);  
+            }
+ 
+       }
+       catch(SQLException ex){
+           rep.erreur = true;
+           rep.messageErreur = ex.getMessage();
+       }
+       
+       return rep; 
+   }
+    
+    
 }

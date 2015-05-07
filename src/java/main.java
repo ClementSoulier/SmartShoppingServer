@@ -1,17 +1,4 @@
 
-import SmartShopping.DAO.DaoSmartShopping;
-import SmartShopping.OV.OVProduit;
-import SmartShopping.OV.RepProduit;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import org.json.JSONObject;
 
 
 
