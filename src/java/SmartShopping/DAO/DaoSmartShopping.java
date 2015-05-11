@@ -310,36 +310,39 @@ public class DaoSmartShopping {
        return rep; 
    }
     
-    public static RepNotification GET_NOTIFICATIONS(OVNotification ovNotification) throws SQLException
-   {
-       RepNotification rep = new RepNotification();
-       Connection connexion = GET_Connection();
-       
-       try{
-           
-           Statement statement = connexion.createStatement();
-           ResultSet resultat = statement.executeQuery( "SELECT produit.id, categorie.id, produit.nom, categorie.nom, produit.prix FROM produit, categorie WHERE produit.idCategorie = categorie.id;" );
-           
-            while (resultat.next()) 
-            {
-                OVNotification ovNotification = new OVNotification(
-                    resultat.getInt("notification.id"), 
-                    resultat.getInt("notification.distance"),
-                    resultat.getBoolean("notification.responseNeeded"),
-                    resultat.getString("notification.texte")
-                ); 
-                               
-                rep.getListeNotification().add(ovNotification);  
+    public static RepNotification GET_NOTIFICATIONS(OVNotification oVNotification) throws SQLException {
+        RepNotification rep = new RepNotification();
+        Connection connexion = GET_Connection();
+
+        try {
+            int distance = oVNotification.getDistance();
+            int major = oVNotification.getOvBeacon().getMajor();
+            
+            Statement statement = connexion.createStatement();
+            ResultSet resultat = statement.executeQuery("SELECT notification.id," + 
+                "notification.distance, notification.reponseNeeded, notification.texte " + 
+                "FROM notification\n" +
+                "INNER JOIN beacon on (notification.idBeacon = beacon.id)\n" +
+                "WHERE distance = " + distance + " and major = " + major);
+
+            while (resultat.next()) {
+                OVNotification ovNotif = new OVNotification(
+                        resultat.getInt("notification.id"),
+                        resultat.getInt("notification.distance"),
+                        resultat.getInt("notification.reponseNeeded"),
+                        resultat.getString("notification.texte")
+                );
+
+                rep.getListeNotification().add(ovNotif);
             }
- 
-       }
-       catch(SQLException ex){
-           rep.erreur = true;
-           rep.messageErreur = ex.getMessage();
-       }
-       
-       return rep; 
-   }
+
+        } catch (SQLException ex) {
+            rep.erreur = true;
+            rep.messageErreur = ex.getMessage();
+        }
+
+        return rep;
+    }
     
     
 }

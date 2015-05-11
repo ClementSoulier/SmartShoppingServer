@@ -5,44 +5,44 @@
  */
 package SmartShopping.OV;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  *
  * @author TheNabo1
  */
 public class OVNotification extends OVObject {
-    
-    private Integer id;
+
     private OVPromotion ovPromotion;
     private OVBeacon ovBeacon;
     private int distance;
-    private boolean responseNeeded;
+    private int responseNeeded;
     private String texte;
 
-    
-    public OVNotification(int idNotification, int distance, boolean responseNeeded, String texte) {
+    public OVNotification(String jsonStr) {
+
+        try {
+            JSONObject object;
+            object = new JSONObject(jsonStr);
+
+            this.distance = object.getInt("distance");
+            this.id = object.getInt("id");
+            this.responseNeeded = object.getInt("responseNeeded");
+            this.texte = "texte";
+            this.ovBeacon = new OVBeacon(object.getJSONObject("ovBeacon").toString());
+        } catch (JSONException ex) {
+        }
+    }
+
+    public OVNotification(int idNotification, int distance, int responseNeeded, String texte) {
         this.id = idNotification;
         this.distance = distance;
         this.responseNeeded = responseNeeded;
         this.texte = texte;
+        this.ovBeacon = new OVBeacon();
     }
-    
-    public OVNotification(String jsonStr){
 
-        try 
-        {
-            JSONObject object;
-            object = new JSONObject(jsonStr);
-            
-            this.setDistance(object.getInt("distance"));
-            this.setId(object.getInt("id"));
-            this.responseNeeded(object.getBoolean("responseNeeded"));
-            this.setTexte(object.getBoolean("texte"));
-        } 
-        catch (JSONException ex) 
-        {
-        }
-	}
-    
     public OVPromotion getOvPromotion() {
         return ovPromotion;
     }
@@ -67,11 +67,11 @@ public class OVNotification extends OVObject {
         this.distance = distance;
     }
 
-    public boolean isResponseNeeded() {
+    public int isResponseNeeded() {
         return responseNeeded;
     }
 
-    public void setResponseNeeded(boolean responseNeeded) {
+    public void setResponseNeeded(int responseNeeded) {
         this.responseNeeded = responseNeeded;
     }
 
@@ -82,7 +82,5 @@ public class OVNotification extends OVObject {
     public void setTexte(String texte) {
         this.texte = texte;
     }
-    
-    
-    
+
 }
