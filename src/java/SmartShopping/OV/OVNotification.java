@@ -19,6 +19,7 @@ public class OVNotification extends OVObject {
     private int distance;
     private int responseNeeded;
     private String texte;
+    private OVReponse reponseEnvoye;
 
     public OVNotification(String jsonStr) {
 
@@ -31,6 +32,7 @@ public class OVNotification extends OVObject {
             this.responseNeeded = object.getInt("responseNeeded");
             this.texte = "texte";
             this.ovBeacon = new OVBeacon(object.getJSONObject("ovBeacon").toString());
+            this.reponseEnvoye = new OVReponse(object.getJSONObject("reponseEnvoye").toString());
         } catch (JSONException ex) {
         }
     }
@@ -81,6 +83,14 @@ public class OVNotification extends OVObject {
 
     public void setTexte(String texte) {
         this.texte = texte;
+    }
+
+    public OVReponse getReponseEnvoye() {
+        return reponseEnvoye;
+    }
+
+    public void setReponseEnvoye(OVReponse reponseEnvoye) {
+        this.reponseEnvoye = reponseEnvoye;
     }
 
 }

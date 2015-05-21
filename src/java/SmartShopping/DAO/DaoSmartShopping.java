@@ -335,6 +335,33 @@ public class DaoSmartShopping {
 
                 rep.getListeNotification().add(ovNotif);
             }
+            
+            // Traitement des notifications qui ont besoin d'une réponse 
+            
+            if(rep.getListeNotification().size() > 0 && rep.getListeNotification().get(0).isResponseNeeded() == 1){
+                statement.close();
+                statement = connexion.createStatement();
+                OVReponse ovReponse = new OVReponse();
+                ovReponse.setEtat(0);
+                int resultatInsert = statement.executeUpdate("INSERT INTO reponse (etat, idNotification) VALUES (0, "+rep.getListeNotification().get(0).getId()+");",Statement.RETURN_GENERATED_KEYS );
+           
+                if(resultatInsert == 0)
+                {
+                    rep.erreur = true;
+                    rep.messageErreur = "Aucune ligne inséré!";
+                }
+                else{
+                    ResultSet gk = statement.getGeneratedKeys();
+                    if (gk.next()) {
+                        ovReponse.setId(gk.getInt(1));
+                    }
+                    else 
+                    {
+                        rep.messageErreur = "Creating user failed, no ID obtained.";
+                    }
+                }
+                rep.getListeNotification().get(0).setReponseEnvoye(ovReponse);
+            }
 
         } catch (SQLException ex) {
             rep.erreur = true;
@@ -344,5 +371,29 @@ public class DaoSmartShopping {
         return rep;
     }
     
-    
+    public static RepNotification UPDATE_REPONSE(OVNotification ovNotification) throws SQLException {
+       
+       RepNotification rep = new RepNotification();
+       Connection connexion = GET_Connection();
+       
+       try{
+          
+                Statement statement = connexion.createStatement();
+                int resultat = statement.executeUpdate("UPDATE reponse SET etat = "+ovNotification.getReponseEnvoye().getEtat()+", WHERE id = "+ovNotification.getReponseEnvoye().getId()+";");
+
+                 if(resultat == 0)
+                 {
+                     rep.erreur = true;
+                     rep.messageErreur = "Aucune ligne mise à jour!";
+                 }
+          
+ 
+       }
+       catch(SQLException ex){
+           rep.erreur = true;
+           rep.messageErreur = ex.getMessage();
+       }
+      
+       return rep;
+   }
 }

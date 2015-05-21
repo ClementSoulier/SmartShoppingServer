@@ -14,8 +14,6 @@
     }
     else
     {
-        
-        out.print("Aucun objet en paramètre");
-        
+        out.print("Aucun objet en paramètre");  
    }
 %>
