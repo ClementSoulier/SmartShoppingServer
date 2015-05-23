@@ -379,7 +379,7 @@ public class DaoSmartShopping {
        try{
           
                 Statement statement = connexion.createStatement();
-                int resultat = statement.executeUpdate("UPDATE reponse SET etat = "+ovNotification.getReponseEnvoye().getEtat()+", WHERE id = "+ovNotification.getReponseEnvoye().getId()+";");
+                int resultat = statement.executeUpdate("UPDATE reponse SET etat = "+ovNotification.getReponseEnvoye().getEtat()+" WHERE idReponse = "+ovNotification.getReponseEnvoye().getId()+";");
 
                  if(resultat == 0)
                  {
