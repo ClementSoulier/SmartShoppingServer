@@ -396,4 +396,39 @@ public class DaoSmartShopping {
       
        return rep;
    }
+    
+    public static RepProduit GET_PRODUIT_BY_REPONSE(OVReponse ovReponse) throws SQLException {
+       RepProduit rep = new RepProduit();
+       Connection connexion = GET_Connection();
+       
+       try{
+           
+           Statement statement = connexion.createStatement();
+           ResultSet resultat = statement.executeQuery( "SELECT produit.id, categorie.id, " + 
+                "produit.nom, categorie.nom, produit.prix FROM produit\n" +
+                "INNER JOIN categorie on (produit.idCategorie = categorie.id)\n" +
+                "INNER JOIN promotion on (produit.id = promotion.idProduit)\n" +
+                "INNER JOIN notification on (notification.idPromotion = promotion.id)\n" +
+                "INNER JOIN reponse on (reponse.idNotification = notification.id)\n" +
+                "WHERE idReponse = " + ovReponse.getId() );
+           
+            while (resultat.next()) {
+                OVProduit ovProduit = new OVProduit(
+                    resultat.getInt("produit.id"), 
+                    resultat.getString("produit.nom"), 
+                    new OVCategorie(resultat.getInt("categorie.id"),resultat.getString("categorie.nom")), 
+                    resultat.getDouble("produit.prix")
+                ); 
+                               
+                rep.getListeProduit().add(ovProduit);  
+            }
+ 
+       }
+       catch(SQLException ex){
+           rep.erreur = true;
+           rep.messageErreur = ex.getMessage();
+       }
+       
+       return rep; 
+   }
 }
