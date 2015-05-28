@@ -387,6 +387,17 @@ public class DaoSmartShopping {
                      rep.messageErreur = "Aucune ligne mise à jour!";
                  }
           
+                 // Ajout de la promotion //
+                 
+                 if(ovNotification.getReponseEnvoye().getEtat() == 1 && ovNotification.getOvPromotion() != null){
+                     resultat = statement.executeUpdate("INSERT INTO promotionUtilisateur (idUtilisateur, idPromotion) VALUES (0,"+ovNotification.getOvPromotion().getId()+");",Statement.RETURN_GENERATED_KEYS );
+           
+                        if(resultat == 0)
+                        {
+                            rep.erreur = true;
+                            rep.messageErreur = "Aucune ligne inséré!";
+                        }
+                 }
  
        }
        catch(SQLException ex){
