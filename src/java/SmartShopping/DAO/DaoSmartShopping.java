@@ -80,7 +80,7 @@ public class DaoSmartShopping {
        return rep; 
    }
    
-   public static RepSmartList GET_LISTE_PRODUIT() throws SQLException {
+   public static RepSmartList GET_LISTE_PRODUIT(OVUtilisateur user) throws SQLException {
        
        RepSmartList rep = new RepSmartList();
        Connection connexion = GET_Connection();
@@ -90,7 +90,7 @@ public class DaoSmartShopping {
        try{
            
            Statement statement = connexion.createStatement();
-           ResultSet resultat = statement.executeQuery( "SELECT * FROM smartliste ORDER BY id LIMIT 1" );
+           ResultSet resultat = statement.executeQuery( "SELECT * FROM smartliste where idUtilisateur = '"+user.getId()+"' ORDER BY id LIMIT 1" );
            
             while (resultat.next()) 
             {
@@ -101,6 +101,7 @@ public class DaoSmartShopping {
                 
                 ovSmartList.setId(resultat.getInt("id"));
             }
+            ovSmartList.setUtilisateur(user);
  
        }
        catch(SQLException ex){
@@ -442,4 +443,71 @@ public class DaoSmartShopping {
        
        return rep; 
    }
+    
+    public static RepUtilisateur getUser(String imei){
+        RepUtilisateur utilisateurRep = new RepUtilisateur();
+        
+        Connection connexion = GET_Connection();
+       
+       try{
+           
+           Statement statement = connexion.createStatement();
+           ResultSet resultat = statement.executeQuery( "SELECT * from utilisateur "+
+                "WHERE IMEI = " + imei);
+           
+            while (resultat.next()) {
+                OVUtilisateur ovUser = new OVProduit(
+                    resultat.getInt("id"), 
+                    resultat.getString("IMEI")
+                ); 
+                utilisateurRep.setUtilisateur(ovUser);
+            }
+            
+       }
+       catch(SQLException ex){
+           utilisateurRep.erreur = true;
+           utilisateurRep.messageErreur = ex.getMessage();
+       }
+       
+       return utilisateurRep; 
+    }
+    
+    public static RepPromotionUtilisateur INSERT_PROMOTION_UTILISATEUR(int IdUtilisateur, int idPromotion){
+        RepPromotionUtilisateur repPromoUtilisateur = new RepPromotionUtilisateur();
+        
+        Connection connexion = GET_Connection();
+       
+       try{
+           
+           Statement statement = connexion.createStatement();
+           ResultSet resultat = statement.executeQuery("INSERT INTO PromotionUtilisateur(idUtilisateur, idPromotion) VALUES ( "+
+                   IdUtilisateur+", "+idPromotion+
+                   ") ");
+           
+            if(resultat == 0)
+            {
+                repPromoUtilisateur.erreur = true;
+                repPromoUtilisateur.messageErreur = "Aucune ligne inséré!";
+            }
+            else{
+                ResultSet gk = statement.getGeneratedKeys();
+                if (gk.next()) {
+                    ArrayList<OVPromotionUtilisateur> promotions = new ArrayList<OVPromotionUtilisateur>();
+                    promotions.add(new OVPromotionUtilisateur(IdUtilisateur, idPromotion));
+                    repPromoUtilisateur.setPromotions(promotions);
+                }
+                else 
+                {
+                    repPromoUtilisateur.messageErreur = "Insert promotion utilisateur faield.";
+                }
+            }
+            
+       }
+       catch(SQLException ex){
+           repPromoUtilisateur.erreur = true;
+           repPromoUtilisateur.messageErreur = ex.getMessage();
+       }
+       
+       return repPromoUtilisateur;
+    }
 }
