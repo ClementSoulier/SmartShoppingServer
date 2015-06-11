@@ -444,7 +444,7 @@ public class DaoSmartShopping {
        return rep; 
    }
     
-    public static RepUtilisateur getUser(String imei){
+    public static RepUtilisateur getUser(String imei) throws SQLException{
         RepUtilisateur utilisateurRep = new RepUtilisateur();
         
         Connection connexion = GET_Connection();
@@ -456,7 +456,7 @@ public class DaoSmartShopping {
                 "WHERE IMEI = " + imei);
            
             while (resultat.next()) {
-                OVUtilisateur ovUser = new OVProduit(
+                OVUtilisateur ovUser = new OVUtilisateur(
                     resultat.getInt("id"), 
                     resultat.getString("IMEI")
                 ); 
@@ -472,7 +472,7 @@ public class DaoSmartShopping {
        return utilisateurRep; 
     }
     
-    public static RepPromotionUtilisateur INSERT_PROMOTION_UTILISATEUR(int IdUtilisateur, int idPromotion){
+    public static RepPromotionUtilisateur INSERT_PROMOTION_UTILISATEUR(int IdUtilisateur, int idPromotion) throws SQLException{
         RepPromotionUtilisateur repPromoUtilisateur = new RepPromotionUtilisateur();
         
         Connection connexion = GET_Connection();
@@ -480,7 +480,7 @@ public class DaoSmartShopping {
        try{
            
            Statement statement = connexion.createStatement();
-           ResultSet resultat = statement.executeQuery("INSERT INTO PromotionUtilisateur(idUtilisateur, idPromotion) VALUES ( "+
+           int resultat = statement.executeUpdate("INSERT INTO PromotionUtilisateur(idUtilisateur, idPromotion) VALUES ( "+
                    IdUtilisateur+", "+idPromotion+
                    ") ");
            

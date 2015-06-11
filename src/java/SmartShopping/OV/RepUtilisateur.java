@@ -1,14 +1,14 @@
 package SmartShopping.OV;
 
-public class RepSmartList extends OVRep{
+public class RepUtilisateur extends OVRep{
 
-	private RepUtilisateur utilisateur;
+	private OVUtilisateur utilisateur;
 
-    public RepUtilisateur getUtilisateur() {
+    public OVUtilisateur getUtilisateur() {
         return utilisateur;
     }
 
-    public void setUtilisateur(RepUtilisateur utilisateur) {
+    public void setUtilisateur(OVUtilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
 

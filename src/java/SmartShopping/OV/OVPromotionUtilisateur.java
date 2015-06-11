@@ -14,7 +14,6 @@ import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
 
 /**
  *
@@ -34,5 +33,11 @@ public class OVPromotionUtilisateur extends OVObject{
 			e.printStackTrace();
             } 
     }
+
+    public OVPromotionUtilisateur(int idUtilisateur, int idPromotion) {
+        this.idPromotion = idPromotion;
+        this.idUtilisateur = idUtilisateur;
+    }
+    
     
 }

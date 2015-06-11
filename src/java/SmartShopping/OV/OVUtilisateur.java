@@ -7,6 +7,8 @@ package SmartShopping.OV;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -36,7 +38,7 @@ public class OVUtilisateur extends OVObject {
         }
     }
     public OVUtilisateur(int id, String imei){
-        super(id);
+        this.id = id;
         this.IMEI = imei;
     }
 }
