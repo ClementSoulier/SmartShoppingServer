@@ -1,6 +1,6 @@
 <%@page import="SmartShopping.DAO.DaoSmartShopping"%>
 <%@page import="SmartShopping.OV.*" %>
-}<%
+<%
     
     if(request.getParameter("IMEI") != null) {
         
