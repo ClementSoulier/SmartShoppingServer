@@ -454,7 +454,7 @@ public class DaoSmartShopping {
            Statement statement = connexion.createStatement();
            ResultSet resultat = statement.executeQuery( "SELECT * from utilisateur "+
                 "WHERE IMEI = " + imei);
-           int lineCounter = 0; //PCK je ne sais pas quel foncition retourn le nombre de ligne...
+           int lineCounter = 0; 
             while (resultat.next()) {
                 OVUtilisateur ovUser = new OVUtilisateur(
                     resultat.getInt("id"), 
@@ -463,14 +463,13 @@ public class DaoSmartShopping {
                 utilisateurRep.setUtilisateur(ovUser);
                 lineCounter++;
             }
-            if(lineCounter = 0){
-                int result = statement.executeQuery("insert into utilisateur(imei) values('"
-                +imei+"'");
+            if(lineCounter == 0){
+                int result = statement.executeUpdate("INSERT INTO utilisateur(imei) VALUES('"+imei+"'");
                 if(result == 0){
                     utilisateurRep.erreur = true;
                     utilisateurRep.messageErreur = "Add new user failed";
                     return utilisateurRep;
-                }else{
+                } else {
                     return getUser(imei); //appel recursive...
                 }
             }
