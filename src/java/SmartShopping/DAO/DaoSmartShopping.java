@@ -112,7 +112,7 @@ public class DaoSmartShopping {
        try{
            
            Statement statement2 = connexion.createStatement();
-           ResultSet resultat2 = statement2.executeQuery( "select * from listeproduit where idListe = 1 and supprime = 0;" );
+           ResultSet resultat2 = statement2.executeQuery( "select * from listeproduit where idListe = " + ovSmartList.getId() + " and supprime = 0;" );
            
             while (resultat2.next()) 
             {
