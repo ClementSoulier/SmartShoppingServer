@@ -470,7 +470,9 @@ public class DaoSmartShopping {
                     utilisateurRep.messageErreur = "Add new user failed";
                     return utilisateurRep;
                 } else {
-                    return getUser(imei); //appel recursive...
+                    utilisateurRep =  getUser(imei); //appel recursive...
+                    statement.executeUpdate("Insert INTO smartlist(nom, idUtilisateur) VALUES('-',"+utilisateurRep.getId());
+                    return utilisateurRep;
                 }
             }
             
