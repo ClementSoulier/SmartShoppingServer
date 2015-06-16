@@ -464,14 +464,14 @@ public class DaoSmartShopping {
                 lineCounter++;
             }
             if(lineCounter == 0){
-                int result = statement.executeUpdate("INSERT INTO utilisateur(imei) VALUES('"+imei+"'");
+                int result = statement.executeUpdate("INSERT INTO utilisateur(imei) VALUES(" + imei + ")");
                 if(result == 0){
                     utilisateurRep.erreur = true;
                     utilisateurRep.messageErreur = "Add new user failed";
                     return utilisateurRep;
                 } else {
                     utilisateurRep =  getUser(imei); //appel recursive...
-                    statement.executeUpdate("Insert INTO smartlist(nom, idUtilisateur) VALUES('-',"+utilisateurRep.getId());
+                    statement.executeUpdate("INSERT INTO smartliste(nom, idUtilisateur) VALUES('-'," + utilisateurRep.getUtilisateur().getId() + ")");
                     return utilisateurRep;
                 }
             }
