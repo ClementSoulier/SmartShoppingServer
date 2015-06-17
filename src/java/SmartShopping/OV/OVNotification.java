@@ -15,11 +15,20 @@ import org.json.JSONObject;
 public class OVNotification extends OVObject {
 
     private OVPromotion ovPromotion;
+    private int idPromotion;
     private OVBeacon ovBeacon;
     private int distance;
     private int responseNeeded;
     private String texte;
     private OVReponse reponseEnvoye;
+
+    public int getIdPromotion() {
+        return idPromotion;
+    }
+
+    public void setIdPromotion(int idPromotion) {
+        this.idPromotion = idPromotion;
+    }
 
     public OVNotification(String jsonStr) {
 
@@ -37,13 +46,14 @@ public class OVNotification extends OVObject {
         }
     }
 
-    public OVNotification(int idNotification, int distance, int responseNeeded, String texte) {
+    public OVNotification(int idNotification, int distance, int responseNeeded, String texte, int idPromotion) {
         this.id = idNotification;
         this.distance = distance;
         this.responseNeeded = responseNeeded;
         this.texte = texte;
         this.ovBeacon = new OVBeacon();
         this.reponseEnvoye = new OVReponse();
+        this.idPromotion = idPromotion;
     }
 
     public OVPromotion getOvPromotion() {

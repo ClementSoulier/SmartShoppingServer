@@ -311,6 +311,52 @@ public class DaoSmartShopping {
        return rep; 
    }
     
+    private static RepPromotion GET_PROMOTIONS_BY_ID(int idPromotion) throws SQLException
+   {
+       RepPromotion rep = new RepPromotion();
+       Connection connexion = GET_Connection();
+       
+       try{
+           
+           Statement statement = connexion.createStatement();
+           ResultSet resultat = statement.executeQuery( "SELECT \n" +
+            "promotion.id, promotion.libellePromotion, promotion.promotion, promotion.dateDebut, promotion.dateFin, \n" +
+            "typepromotion.id, typepromotion.libelleTypePromotion,\n" +
+            "produit.id, produit.nom, produit.prix,\n" +
+            "categorie.id,  categorie.nom\n" +
+            "FROM promotion, typepromotion, produit, categorie\n" +
+            "WHERE promotion.idTypePromotion = typepromotion.id \n" +
+            "AND promotion.idProduit = produit.id\n" +
+            "AND promotion.id = "+ idPromotion +"\n" +
+            "AND produit.idCategorie = categorie.id;" );
+           
+            while (resultat.next()) 
+            {
+                OVProduit ovProduit = new OVProduit(
+                    resultat.getInt("produit.id"), 
+                    resultat.getString("produit.nom"), 
+                    new OVCategorie(resultat.getInt("categorie.id"),resultat.getString("categorie.nom")), 
+                    resultat.getDouble("produit.prix")
+                ); 
+                
+                OVTypePromotion ovTypePromotion = new OVTypePromotion(resultat.getString("typepromotion.libelleTypePromotion"));
+                
+                OVPromotion ovPromotion = new OVPromotion(ovTypePromotion, ovProduit,resultat.getString("promotion.libellePromotion"), resultat.getFloat("promotion.promotion"), resultat.getDate("promotion.dateDebut"), resultat.getDate("promotion.dateFin"));
+                
+                
+                               
+                rep.getListePromotion().add(ovPromotion);  
+            }
+ 
+       }
+       catch(SQLException ex){
+           rep.erreur = true;
+           rep.messageErreur = ex.getMessage();
+       }
+       
+       return rep; 
+   }
+    
     public static RepNotification GET_NOTIFICATIONS(OVNotification oVNotification) throws SQLException {
         RepNotification rep = new RepNotification();
         Connection connexion = GET_Connection();
@@ -321,7 +367,7 @@ public class DaoSmartShopping {
             
             Statement statement = connexion.createStatement();
             ResultSet resultat = statement.executeQuery("SELECT notification.id," + 
-                "notification.distance, notification.reponseNeeded, notification.texte " + 
+                "notification.distance, notification.reponseNeeded, notification.texte, notification.idPromotion " + 
                 "FROM notification\n" +
                 "INNER JOIN beacon on (notification.idBeacon = beacon.id)\n" +
                 "WHERE distance = " + distance + " and major = " + major);
@@ -331,7 +377,8 @@ public class DaoSmartShopping {
                         resultat.getInt("notification.id"),
                         resultat.getInt("notification.distance"),
                         resultat.getInt("notification.reponseNeeded"),
-                        resultat.getString("notification.texte")
+                        resultat.getString("notification.texte"),
+                        resultat.getInt("notification.idPromotion")
                 );
 
                 rep.getListeNotification().add(ovNotif);
@@ -362,6 +409,7 @@ public class DaoSmartShopping {
                     }
                 }
                 rep.getListeNotification().get(0).setReponseEnvoye(ovReponse);
+                rep.getListeNotification().get(0).setOvPromotion(GET_PROMOTIONS_BY_ID(rep.getListeNotification().get(0).getIdPromotion()).getListePromotion().get((0)));
             }
 
         } catch (SQLException ex) {
