@@ -15,17 +15,7 @@ import org.json.JSONObject;
  * @author TheNabo1
  */
 public class OVUtilisateur extends OVObject {
-    private String IMEI;
-
-    public String getIMEI() {
-        return IMEI;
-    }
-
-    public void setIMEI(String IMEI) {
-        this.IMEI = IMEI;
-    }
-    
-    
+   
     public OVUtilisateur(String jsonStr) {
 
         try {
@@ -33,12 +23,10 @@ public class OVUtilisateur extends OVObject {
             object = new JSONObject(jsonStr);
 
             this.id = object.getInt("id");
-            this.IMEI = object.getString("IMEI");
         } catch (JSONException ex) {
         }
     }
-    public OVUtilisateur(int id, String imei){
+    public OVUtilisateur(int id){
         this.id = id;
-        this.IMEI = imei;
     }
 }

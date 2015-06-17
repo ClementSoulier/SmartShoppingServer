@@ -266,7 +266,7 @@ public class DaoSmartShopping {
        return rep; 
    }  
     
-    public static RepPromotion GET_PROMOTIONS() throws SQLException
+    public static RepPromotion GET_PROMOTIONS(OVUtilisateur ovUtilisateur) throws SQLException
    {
        RepPromotion rep = new RepPromotion();
        Connection connexion = GET_Connection();
@@ -279,10 +279,12 @@ public class DaoSmartShopping {
             "typepromotion.id, typepromotion.libelleTypePromotion,\n" +
             "produit.id, produit.nom, produit.prix,\n" +
             "categorie.id,  categorie.nom\n" +
-            "FROM promotion, typepromotion, produit, categorie\n" +
+            "FROM promotion, typepromotion, produit, categorie, promotionutilisateur\n" +
             "WHERE promotion.idTypePromotion = typepromotion.id \n" +
+            "AND promotionutilisateur.idPromotion = promotion.id\n" +
+            "AND promotionutilisateur.idUtilisateur = "+ ovUtilisateur.getId() +"\n" +
             "AND promotion.idProduit = produit.id\n" +
-            "AND produit.idCategorie = categorie.id;;" );
+            "AND produit.idCategorie = categorie.id;" );
            
             while (resultat.next()) 
             {
@@ -492,7 +494,7 @@ public class DaoSmartShopping {
        return rep; 
    }
     
-    public static RepUtilisateur getUser(String imei) throws SQLException{
+    public static RepUtilisateur getUser(int id) throws SQLException{
         RepUtilisateur utilisateurRep = new RepUtilisateur();
         
         Connection connexion = GET_Connection();
@@ -501,24 +503,23 @@ public class DaoSmartShopping {
            
            Statement statement = connexion.createStatement();
            ResultSet resultat = statement.executeQuery( "SELECT * from utilisateur "+
-                "WHERE IMEI = " + imei);
+                "WHERE id = " + id);
            int lineCounter = 0; 
             while (resultat.next()) {
                 OVUtilisateur ovUser = new OVUtilisateur(
-                    resultat.getInt("id"), 
-                    resultat.getString("imei")
+                    resultat.getInt("id") 
                 ); 
                 utilisateurRep.setUtilisateur(ovUser);
                 lineCounter++;
             }
             if(lineCounter == 0){
-                int result = statement.executeUpdate("INSERT INTO utilisateur(imei) VALUES(" + imei + ")");
+                int result = statement.executeUpdate("INSERT INTO utilisateur(id) VALUES(" + id + ")");
                 if(result == 0){
                     utilisateurRep.erreur = true;
                     utilisateurRep.messageErreur = "Add new user failed";
                     return utilisateurRep;
                 } else {
-                    utilisateurRep =  getUser(imei); //appel recursive...
+                    utilisateurRep =  getUser(id); //appel recursive...
                     statement.executeUpdate("INSERT INTO smartliste(nom, idUtilisateur) VALUES('-'," + utilisateurRep.getUtilisateur().getId() + ")");
                     return utilisateurRep;
                 }
