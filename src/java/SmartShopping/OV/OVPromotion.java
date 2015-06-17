@@ -7,6 +7,8 @@
 package SmartShopping.OV;
 
 import java.sql.Date;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -21,9 +23,27 @@ public class OVPromotion extends OVObject{
     private Date dateDebut;
     private Date dateFin;
 
-    public OVPromotion(OVTypePromotion ovTypePromotion, OVProduit ovProduit, 
+    public OVPromotion(String jsonStr) {
+
+        try {
+            JSONObject object;
+            object = new JSONObject(jsonStr);
+
+            this.id = object.getInt("id");
+            this.ovTypePromotion = new OVTypePromotion(object.getJSONObject("ovTypePromotion").toString());
+            //this.ovProduit = new OVProduit(object.getJSONObject("ovProduit").toString());
+            this.libellePromotion = object.getString("libellePromotion");
+            this.promotion = (float)object.getDouble("promotion");
+         
+        } catch (JSONException ex) {
+            System.out.println("Exception " + ex.getMessage());
+        }
+    }
+    
+    public OVPromotion(int id, OVTypePromotion ovTypePromotion, OVProduit ovProduit, 
             String libellePromotion, float promotion, Date dateDebut, 
             Date dateFin) {
+        this.id = id;
         this.ovTypePromotion = ovTypePromotion;
         this.ovProduit = ovProduit;
         this.libellePromotion = libellePromotion;

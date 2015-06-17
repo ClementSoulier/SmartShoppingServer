@@ -295,7 +295,7 @@ public class DaoSmartShopping {
                 
                 OVTypePromotion ovTypePromotion = new OVTypePromotion(resultat.getString("typepromotion.libelleTypePromotion"));
                 
-                OVPromotion ovPromotion = new OVPromotion(ovTypePromotion, ovProduit,resultat.getString("promotion.libellePromotion"), resultat.getFloat("promotion.promotion"), resultat.getDate("promotion.dateDebut"), resultat.getDate("promotion.dateFin"));
+                OVPromotion ovPromotion = new OVPromotion(resultat.getInt("promotion.id"), ovTypePromotion, ovProduit,resultat.getString("promotion.libellePromotion"), resultat.getFloat("promotion.promotion"), resultat.getDate("promotion.dateDebut"), resultat.getDate("promotion.dateFin"));
                 
                 
                                
@@ -341,7 +341,7 @@ public class DaoSmartShopping {
                 
                 OVTypePromotion ovTypePromotion = new OVTypePromotion(resultat.getString("typepromotion.libelleTypePromotion"));
                 
-                OVPromotion ovPromotion = new OVPromotion(ovTypePromotion, ovProduit,resultat.getString("promotion.libellePromotion"), resultat.getFloat("promotion.promotion"), resultat.getDate("promotion.dateDebut"), resultat.getDate("promotion.dateFin"));
+                OVPromotion ovPromotion = new OVPromotion(resultat.getInt("promotion.id"), ovTypePromotion, ovProduit,resultat.getString("promotion.libellePromotion"), resultat.getFloat("promotion.promotion"), resultat.getDate("promotion.dateDebut"), resultat.getDate("promotion.dateFin"));
                 
                 
                                
