@@ -21,6 +21,15 @@ public class OVNotification extends OVObject {
     private int responseNeeded;
     private String texte;
     private OVReponse reponseEnvoye;
+    private int idUtilisateur;
+
+    public int getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public void setIdUtilisateur(int idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
 
     public int getIdPromotion() {
         return idPromotion;
@@ -38,6 +47,7 @@ public class OVNotification extends OVObject {
 
             this.distance = object.getInt("distance");
             this.id = object.getInt("id");
+            this.idUtilisateur = object.getInt("idUtilisateur");
             this.responseNeeded = object.getInt("responseNeeded");
             this.texte = object.getString("texte");
             this.ovBeacon = new OVBeacon(object.getJSONObject("ovBeacon").toString());
