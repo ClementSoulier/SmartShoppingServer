@@ -6,13 +6,13 @@ import org.json.JSONObject;
 import com.google.gson.Gson;
 
 public class OVObject {
-	protected Integer id; 
+	protected int id; 
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

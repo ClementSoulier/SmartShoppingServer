@@ -47,8 +47,8 @@ public class OVBeacon extends OVObject {
         this.minor = minor;
     }
     
-    @Override
-    public Integer getId() {
+
+    public int getId() {
         return idBeacon;
     }
 

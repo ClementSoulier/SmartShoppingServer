@@ -24,7 +24,6 @@ public class OVCommande extends OVObject {
             JSONObject object;
             object = new JSONObject(jsonStr);
 
-            this.id = object.getInt("id");
             this.idUtilisateur = object.getInt("idUtilisateur");
             this.idSmartlist = object.getInt("idSmartlist");
             this.montant = (float)object.getDouble("montant");

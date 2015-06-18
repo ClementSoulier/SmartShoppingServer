@@ -1,5 +1,6 @@
 
 import SmartShopping.DAO.DaoSmartShopping;
+import SmartShopping.OV.OVCommande;
 import SmartShopping.OV.OVNotification;
 import SmartShopping.OV.RepNotification;
 import static java.lang.System.out;
@@ -28,6 +29,8 @@ public class main {
     public static void main(String[] args) throws Exception {
         
        // test
+        OVCommande ovCommande = new OVCommande("{\"montant\":0,\"idUtilisateur\":52915155,\"idSmartlist\":3}");
+        System.out.println(ovCommande.getIdUtilisateur());
     }
     
  

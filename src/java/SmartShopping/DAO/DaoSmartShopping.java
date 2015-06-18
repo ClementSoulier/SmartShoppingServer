@@ -146,7 +146,7 @@ public class DaoSmartShopping {
           
            Statement statement = connexion.createStatement();
            
-           int resultat = statement.executeUpdate("INSERT INTO listeproduit (idProduit, idListe) VALUES ("+ovListeProduit.getIdProduit()+","+ovListeProduit.getIdListe()+");",Statement.RETURN_GENERATED_KEYS );
+           int resultat = statement.executeUpdate("INSERT intO listeproduit (idProduit, idListe) VALUES ("+ovListeProduit.getIdProduit()+","+ovListeProduit.getIdListe()+");",Statement.RETURN_GENERATED_KEYS );
            
             if(resultat == 0)
             {
@@ -393,7 +393,7 @@ public class DaoSmartShopping {
                 statement = connexion.createStatement();
                 OVReponse ovReponse = new OVReponse();
                 ovReponse.setEtat(0);
-                int resultatInsert = statement.executeUpdate("INSERT INTO reponse (etat, idNotification) VALUES (0, "+rep.getListeNotification().get(0).getId()+");",Statement.RETURN_GENERATED_KEYS );
+                int resultatInsert = statement.executeUpdate("INSERT intO reponse (etat, idNotification) VALUES (0, "+rep.getListeNotification().get(0).getId()+");",Statement.RETURN_GENERATED_KEYS );
            
                 if(resultatInsert == 0)
                 {
@@ -441,7 +441,7 @@ public class DaoSmartShopping {
                  // Ajout de la promotion //
                  
                  if(ovNotification.getReponseEnvoye().getEtat() == 1 && ovNotification.getOvPromotion() != null){
-                     resultat = statement.executeUpdate("INSERT INTO promotionutilisateur (idUtilisateur, idPromotion) VALUES ("+ovNotification.getIdUtilisateur()+","+ovNotification.getOvPromotion().getId()+");",Statement.RETURN_GENERATED_KEYS );
+                     resultat = statement.executeUpdate("INSERT intO promotionutilisateur (idUtilisateur, idPromotion) VALUES ("+ovNotification.getIdUtilisateur()+","+ovNotification.getOvPromotion().getId()+");",Statement.RETURN_GENERATED_KEYS );
            
                         if(resultat == 0)
                         {
@@ -515,16 +515,16 @@ public class DaoSmartShopping {
                 lineCounter++;
             }
             if(lineCounter == 0){
-                int result = statement.executeUpdate("INSERT INTO utilisateur(id) VALUES(" + id + ")");
-                System.out.println("INSERT INTO utilisateur(id) VALUES(" + id + ")");
+                int result = statement.executeUpdate("INSERT intO utilisateur(id) VALUES(" + id + ")");
+                System.out.println("INSERT intO utilisateur(id) VALUES(" + id + ")");
                 if(result == 0){
                     utilisateurRep.erreur = true;
                     utilisateurRep.messageErreur = "Add new user failed";
                     return utilisateurRep;
                 } else {
                     utilisateurRep = getUser(id); //appel recursive...
-                    statement.executeUpdate("INSERT INTO smartliste(nom, idUtilisateur) VALUES('-'," + utilisateurRep.getUtilisateur().getId() + ")");
-                    System.out.println("INSERT INTO smartliste(nom, idUtilisateur) VALUES('-'," + utilisateurRep.getUtilisateur().getId() + ")");
+                    statement.executeUpdate("INSERT intO smartliste(nom, idUtilisateur) VALUES('-'," + utilisateurRep.getUtilisateur().getId() + ")");
+                    System.out.println("INSERT intO smartliste(nom, idUtilisateur) VALUES('-'," + utilisateurRep.getUtilisateur().getId() + ")");
                     return utilisateurRep;
                 }
             }
@@ -546,7 +546,7 @@ public class DaoSmartShopping {
        try{
            
            Statement statement = connexion.createStatement();
-           int resultat = statement.executeUpdate("INSERT INTO PromotionUtilisateur(idUtilisateur, idPromotion) VALUES ( "+
+           int resultat = statement.executeUpdate("INSERT intO PromotionUtilisateur(idUtilisateur, idPromotion) VALUES ( "+
                    IdUtilisateur+", "+idPromotion+
                    ") ");
            
@@ -584,7 +584,7 @@ public class DaoSmartShopping {
        try{
            
            Statement statement = connexion.createStatement();
-           int resultat = statement.executeUpdate("INSERT INTO commande(idUtilisateur, idSmartliste, montant) VALUES ( "+
+           int resultat = statement.executeUpdate("INSERT into commande(idUtilisateur, idSmartliste, montant) VALUES ( "+
                    ovCommande.getIdUtilisateur()+", "+ovCommande.getIdUtilisateur()+", "+ovCommande.getMontant()+
                    ") ");
            
