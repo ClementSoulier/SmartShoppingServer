@@ -504,6 +504,8 @@ public class DaoSmartShopping {
            Statement statement = connexion.createStatement();
            ResultSet resultat = statement.executeQuery( "SELECT * from utilisateur "+
                 "WHERE id = " + id);
+           System.out.println("SELECT * from utilisateur "+
+                "WHERE id = " + id);
            int lineCounter = 0; 
             while (resultat.next()) {
                 OVUtilisateur ovUser = new OVUtilisateur(
@@ -514,13 +516,15 @@ public class DaoSmartShopping {
             }
             if(lineCounter == 0){
                 int result = statement.executeUpdate("INSERT INTO utilisateur(id) VALUES(" + id + ")");
+                System.out.println("INSERT INTO utilisateur(id) VALUES(" + id + ")");
                 if(result == 0){
                     utilisateurRep.erreur = true;
                     utilisateurRep.messageErreur = "Add new user failed";
                     return utilisateurRep;
                 } else {
-                    utilisateurRep =  getUser(id); //appel recursive...
+                    utilisateurRep = getUser(id); //appel recursive...
                     statement.executeUpdate("INSERT INTO smartliste(nom, idUtilisateur) VALUES('-'," + utilisateurRep.getUtilisateur().getId() + ")");
+                    System.out.println("INSERT INTO smartliste(nom, idUtilisateur) VALUES('-'," + utilisateurRep.getUtilisateur().getId() + ")");
                     return utilisateurRep;
                 }
             }
