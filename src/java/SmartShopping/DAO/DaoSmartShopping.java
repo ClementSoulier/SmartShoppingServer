@@ -580,8 +580,8 @@ public class DaoSmartShopping {
        try{
            
            Statement statement = connexion.createStatement();
-           int resultat = statement.executeUpdate("INSERT INTO commande(idUtilisateur, idSmartliste) VALUES ( "+
-                   ovCommande.getIdUtilisateur()+", "+ovCommande.getIdUtilisateur()+
+           int resultat = statement.executeUpdate("INSERT INTO commande(idUtilisateur, idSmartliste, montant) VALUES ( "+
+                   ovCommande.getIdUtilisateur()+", "+ovCommande.getIdUtilisateur()+", "+ovCommande.getMontant()+
                    ") ");
            
             if(resultat == 0)

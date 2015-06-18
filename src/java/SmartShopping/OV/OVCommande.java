@@ -27,6 +27,7 @@ public class OVCommande extends OVObject {
             this.id = object.getInt("id");
             this.idUtilisateur = object.getInt("idUtilisateur");
             this.idSmartlist = object.getInt("idSmartlist");
+            this.montant = (float)object.getDouble("montant");
            
         } catch (JSONException ex) {
             System.out.println(ex.getMessage());

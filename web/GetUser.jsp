@@ -5,7 +5,7 @@
     if(request.getParameter("IMEI") != null) {
         
         String IMEI = request.getParameter("IMEI");
-        int id = Integer.parseInt(IMEI.replace("\"", ""));
+        int id = Integer.parseInt(IMEI.replace("&quot;", ""));
         out.print(DaoSmartShopping.getUser(id).toJSON());
     
     }else{
