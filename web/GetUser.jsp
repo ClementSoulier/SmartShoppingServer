@@ -4,7 +4,9 @@
     
     if(request.getParameter("IMEI") != null) {
         
-        out.print(DaoSmartShopping.getUser(request.getParameter("IMEI")).toJSON().toString());
+        String IMEI = request.getParameter("IMEI");
+        int id = Integer.parseInt(IMEI);
+        out.print(DaoSmartShopping.getUser(id).toJSON());
     
     }else{
         out.print("Identifiant IMEI nécessaire.");

@@ -572,4 +572,30 @@ public class DaoSmartShopping {
        
        return repPromoUtilisateur;
     }
+    
+    public static RepCommande INSERT_COMMANDE(OVCommande ovCommande) throws SQLException{
+        
+       Connection connexion = GET_Connection();
+       RepCommande repCommande = new RepCommande();
+       try{
+           
+           Statement statement = connexion.createStatement();
+           int resultat = statement.executeUpdate("INSERT INTO commande(idUtilisateur, idSmartliste) VALUES ( "+
+                   ovCommande.getIdUtilisateur()+", "+ovCommande.getIdUtilisateur()+
+                   ") ");
+           
+            if(resultat == 0)
+            {
+                repCommande.erreur = true;
+                repCommande.messageErreur = "Aucune ligne inséré!";
+            }
+            
+       }
+       catch(SQLException ex){
+           repCommande.erreur = true;
+           repCommande.messageErreur = ex.getMessage();
+       }
+       
+       return repCommande;
+    }
 }
