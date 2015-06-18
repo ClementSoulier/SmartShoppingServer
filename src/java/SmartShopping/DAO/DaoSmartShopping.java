@@ -494,7 +494,7 @@ public class DaoSmartShopping {
        return rep; 
    }
     
-    public static RepUtilisateur getUser(int id) throws SQLException{
+    public static RepUtilisateur getUser(String id) throws SQLException{
         RepUtilisateur utilisateurRep = new RepUtilisateur();
         
         Connection connexion = GET_Connection();
