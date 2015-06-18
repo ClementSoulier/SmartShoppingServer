@@ -5,6 +5,9 @@
  */
 package SmartShopping.OV;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  *
  * @author TheNabo1
@@ -12,8 +15,32 @@ package SmartShopping.OV;
 public class OVCommande extends OVObject {
     
     private int idSmartlist;
-    private int idUtilisateur; 
+    private int idUtilisateur;
+    private float montant;
 
+    public OVCommande(String jsonStr) {
+
+        try {
+            JSONObject object;
+            object = new JSONObject(jsonStr);
+
+            this.id = object.getInt("id");
+            this.idUtilisateur = object.getInt("idUtilisateur");
+            this.idSmartlist = object.getInt("idSmartlist");
+           
+        } catch (JSONException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public float getMontant() {
+        return montant;
+    }
+
+    public void setMontant(float montant) {
+        this.montant = montant;
+    }
+    
     public int getIdSmartlist() {
         return idSmartlist;
     }
