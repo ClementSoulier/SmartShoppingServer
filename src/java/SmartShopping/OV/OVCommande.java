@@ -5,6 +5,7 @@
  */
 package SmartShopping.OV;
 
+import java.sql.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,6 +18,7 @@ public class OVCommande extends OVObject {
     private int idSmartlist;
     private int idUtilisateur;
     private float montant;
+    private Date date; 
 
     public OVCommande(String jsonStr) {
 
@@ -31,6 +33,16 @@ public class OVCommande extends OVObject {
         } catch (JSONException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public OVCommande(){}
+    
+    public OVCommande(int id, int idUtilisateur, int idSmartlist, float montant, Date date){
+        this.id = id;
+        this.idUtilisateur = idUtilisateur;
+        this.idSmartlist = idSmartlist;
+        this.montant = montant;
+        this.date = date;
     }
 
     public float getMontant() {

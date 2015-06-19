@@ -3,6 +3,7 @@ package SmartShopping.DAO;
 
 import SmartShopping.OV.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,6 +79,43 @@ public class DaoSmartShopping {
        }
        
        return rep; 
+   }
+   
+   public static RepCommande GET_COMMANDE(OVUtilisateur user) throws SQLException {
+       
+       RepCommande rep = new RepCommande();
+       Connection connexion = GET_Connection();
+       ArrayList<OVCommande> lstCommande = new ArrayList<OVCommande>();
+       OVCommande ovCommande = new OVCommande();
+       
+       
+       try{
+           
+           Statement statement = connexion.createStatement();
+           ResultSet resultat = statement.executeQuery( "SELECT id, idUtilisateur, idSmartliste, montant, date FROM commande where idUtilisateur = "+user.getId() );
+           
+            while (resultat.next()) 
+            {
+                ovCommande = new OVCommande(
+                    resultat.getInt("id"),
+                    resultat.getInt("idUtilisateur"),
+                    resultat.getInt("idSmartliste"),
+                    (float)resultat.getDouble("montant"),
+                    resultat.getDate("date")
+                ); 
+                
+                lstCommande.add(ovCommande);
+            }
+           
+ 
+       }
+       catch(SQLException ex){
+           rep.erreur = true;
+           rep.messageErreur = ex.getMessage();
+       }
+       
+       return rep; 
+       
    }
    
    public static RepSmartList GET_LISTE_PRODUIT(OVUtilisateur user) throws SQLException {

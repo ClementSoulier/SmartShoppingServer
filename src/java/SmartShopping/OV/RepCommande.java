@@ -5,10 +5,24 @@
  */
 package SmartShopping.OV;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author TheNabo1
  */
 public class RepCommande extends OVRep {
+ 
+    private ArrayList<OVCommande> lstCommandes;
+
+    public ArrayList<OVCommande> getLstCommandes() {
+        return lstCommandes;
+    }
+
+    public void setLstCommandes(ArrayList<OVCommande> lstCommandes) {
+        this.lstCommandes = lstCommandes;
+    }
+    
+    
     
 }
