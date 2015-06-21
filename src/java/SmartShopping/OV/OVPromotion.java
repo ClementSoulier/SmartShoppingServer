@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package SmartShopping.OV;
 
 import java.sql.Date;
@@ -11,8 +5,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
- * @author Shinthu
+ * La classe OVPromotion permet de représenter les promotions liés à un produit.
+ * @author Team SmartShopping
  */
 public class OVPromotion extends OVObject{
 	 
@@ -23,6 +17,10 @@ public class OVPromotion extends OVObject{
     private Date dateDebut;
     private Date dateFin;
 
+    /**
+     *
+     * @param jsonStr
+     */
     public OVPromotion(String jsonStr) {
 
         try {
@@ -40,6 +38,16 @@ public class OVPromotion extends OVObject{
         }
     }
     
+    /**
+     *
+     * @param id
+     * @param ovTypePromotion
+     * @param ovProduit
+     * @param libellePromotion
+     * @param promotion
+     * @param dateDebut
+     * @param dateFin
+     */
     public OVPromotion(int id, OVTypePromotion ovTypePromotion, OVProduit ovProduit, 
             String libellePromotion, float promotion, Date dateDebut, 
             Date dateFin) {
@@ -52,50 +60,98 @@ public class OVPromotion extends OVObject{
         this.dateFin = dateFin;
     }
 
+    /**
+     *
+     * @return
+     */
     public OVTypePromotion getOvTypePromotion() {
         return ovTypePromotion;
     }
 
+    /**
+     *
+     * @return
+     */
     public OVProduit getOvProduit() {
         return ovProduit;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLibellePromotion() {
         return libellePromotion;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getPromotion() {
         return promotion;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateDebut() {
         return dateDebut;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateFin() {
         return dateFin;
     }
 
+    /**
+     *
+     * @param ovTypePromotion
+     */
     public void setOvTypePromotion(OVTypePromotion ovTypePromotion) {
         this.ovTypePromotion = ovTypePromotion;
     }
 
+    /**
+     *
+     * @param ovProduit
+     */
     public void setOvProduit(OVProduit ovProduit) {
         this.ovProduit = ovProduit;
     }
 
+    /**
+     *
+     * @param libellePromotion
+     */
     public void setLibellePromotion(String libellePromotion) {
         this.libellePromotion = libellePromotion;
     }
 
+    /**
+     *
+     * @param promotion
+     */
     public void setPromotion(float promotion) {
         this.promotion = promotion;
     }
 
+    /**
+     *
+     * @param dateDebut
+     */
     public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
     }
 
+    /**
+     *
+     * @param dateFin
+     */
     public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
     }

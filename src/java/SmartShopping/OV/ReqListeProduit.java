@@ -1,17 +1,26 @@
 package SmartShopping.OV;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+/**
+ * La classe ReqListeProduit est la classe de requêtes des demandes utilisant des objets {@link OVListeProduit}.
+ * @author Team SmartShopping
+ */
 public class ReqListeProduit extends OVReq{
 
 	OVListeProduit ovListeProduit;
 
-	public OVListeProduit getOvListeProduit() {
+    /**
+     *
+     * @return
+     */
+    public OVListeProduit getOvListeProduit() {
 		return ovListeProduit;
 	}
 
-	public void setOvListeProduit(OVListeProduit ovListeProduit) {
+    /**
+     *
+     * @param ovListeProduit
+     */
+    public void setOvListeProduit(OVListeProduit ovListeProduit) {
 		this.ovListeProduit = ovListeProduit;
 	}
 	

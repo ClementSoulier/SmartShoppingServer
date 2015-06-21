@@ -1,23 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SmartShopping.OV;
 
 /**
- *
- * @author TheNabo1
+ * La classe ReqNotification est la classe de requêtes des demandes utilisant des objets {@link OVNotification}.
+ * @author Team SmartShopping
  */
 public class ReqNotification extends OVReq {
  
     
     private OVNotification ovNotification;
 
+    /**
+     *
+     * @return
+     */
     public OVNotification getOvNotification() {
         return ovNotification;
     }
 
+    /**
+     *
+     * @param ovNotification
+     */
     public void setOvNotification(OVNotification ovNotification) {
         this.ovNotification = ovNotification;
     }

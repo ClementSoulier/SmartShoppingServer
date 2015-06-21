@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SmartShopping.OV;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
- * @author TheNabo1
+ * La classe OVNotification permet de représenter les notifications à afficher sur le téléphone.
+ * @author Team SmartShopping
  */
 public class OVNotification extends OVObject {
 
@@ -23,22 +18,42 @@ public class OVNotification extends OVObject {
     private OVReponse reponseEnvoye;
     private int idUtilisateur;
 
+    /**
+     *
+     * @return
+     */
     public int getIdUtilisateur() {
         return idUtilisateur;
     }
 
+    /**
+     *
+     * @param idUtilisateur
+     */
     public void setIdUtilisateur(int idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getIdPromotion() {
         return idPromotion;
     }
 
+    /**
+     *
+     * @param idPromotion
+     */
     public void setIdPromotion(int idPromotion) {
         this.idPromotion = idPromotion;
     }
 
+    /**
+     *
+     * @param jsonStr
+     */
     public OVNotification(String jsonStr) {
 
         try {
@@ -59,6 +74,14 @@ public class OVNotification extends OVObject {
         }
     }
 
+    /**
+     *
+     * @param idNotification
+     * @param distance
+     * @param responseNeeded
+     * @param texte
+     * @param idPromotion
+     */
     public OVNotification(int idNotification, int distance, int responseNeeded, String texte, int idPromotion) {
         this.id = idNotification;
         this.distance = distance;
@@ -69,50 +92,98 @@ public class OVNotification extends OVObject {
         this.idPromotion = idPromotion;
     }
 
+    /**
+     *
+     * @return
+     */
     public OVPromotion getOvPromotion() {
         return ovPromotion;
     }
 
+    /**
+     *
+     * @param ovPromotion
+     */
     public void setOvPromotion(OVPromotion ovPromotion) {
         this.ovPromotion = ovPromotion;
     }
 
+    /**
+     *
+     * @return
+     */
     public OVBeacon getOvBeacon() {
         return ovBeacon;
     }
 
+    /**
+     *
+     * @param ovBeacon
+     */
     public void setOvBeacon(OVBeacon ovBeacon) {
         this.ovBeacon = ovBeacon;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDistance() {
         return distance;
     }
 
+    /**
+     *
+     * @param distance
+     */
     public void setDistance(int distance) {
         this.distance = distance;
     }
 
+    /**
+     *
+     * @return
+     */
     public int isResponseNeeded() {
         return responseNeeded;
     }
 
+    /**
+     *
+     * @param responseNeeded
+     */
     public void setResponseNeeded(int responseNeeded) {
         this.responseNeeded = responseNeeded;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTexte() {
         return texte;
     }
 
+    /**
+     *
+     * @param texte
+     */
     public void setTexte(String texte) {
         this.texte = texte;
     }
 
+    /**
+     *
+     * @return
+     */
     public OVReponse getReponseEnvoye() {
         return reponseEnvoye;
     }
 
+    /**
+     *
+     * @param reponseEnvoye
+     */
     public void setReponseEnvoye(OVReponse reponseEnvoye) {
         this.reponseEnvoye = reponseEnvoye;
     }

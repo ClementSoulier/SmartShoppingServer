@@ -6,22 +6,37 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * La classe OVSmartList permet de représenter la liste des courses "Smart".
+ * @author Team SmartShopping
+ */
 public class OVSmartList extends OVObject{
 	
 	private List<OVListeProduit> produitsSmartList;
 	private String nom;
 	private OVUtilisateur utilisateur;
 
+    /**
+     *
+     * @return
+     */
     public OVUtilisateur getUtilisateur() {
         return utilisateur;
     }
 
+    /**
+     *
+     * @param utilisateur
+     */
     public void setUtilisateur(OVUtilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
 
-    
-	public OVSmartList(String jsonStr){
+    /**
+     *
+     * @param jsonStr
+     */
+    public OVSmartList(String jsonStr){
          try 
         {
             JSONObject object = new JSONObject(jsonStr);
@@ -46,21 +61,49 @@ public class OVSmartList extends OVObject{
          }
 	}
         
-        public OVSmartList(){}
+    /**
+     *
+     */
+    public OVSmartList(){}
 	
-	public List<OVListeProduit> getProduitsSmartList() {
+    /**
+     *
+     * @return
+     */
+    public List<OVListeProduit> getProduitsSmartList() {
 		return produitsSmartList;
 	}
-	public void setProduitsSmartList(List<OVListeProduit> produitsSmartList) {
+
+    /**
+     *
+     * @param produitsSmartList
+     */
+    public void setProduitsSmartList(List<OVListeProduit> produitsSmartList) {
 		this.produitsSmartList = produitsSmartList;
 	}
-	public String getNom() {
+
+    /**
+     *
+     * @return
+     */
+    public String getNom() {
 		return nom;
 	}
-	public void setNom(String nom) {
+
+    /**
+     *
+     * @param nom
+     */
+    public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public OVSmartList(List<OVListeProduit> produitsSmartList, String nom) {
+
+    /**
+     *
+     * @param produitsSmartList
+     * @param nom
+     */
+    public OVSmartList(List<OVListeProduit> produitsSmartList, String nom) {
 		super();
 		this.produitsSmartList = produitsSmartList;
 		this.nom = nom;

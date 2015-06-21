@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package SmartShopping.OV;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 /**
- *
- * @author TheNabo1
+ * La classe OVProduit permet de représenter les produits.
+ * @author Team SmartShopping
  */
 public class OVProduit extends OVObject{
 	
@@ -19,6 +10,13 @@ public class OVProduit extends OVObject{
     private OVCategorie ovCategorie; 
     private double prix; 
     
+    /**
+     *
+     * @param idProduit
+     * @param nomProduit
+     * @param ovCategorie
+     * @param prix
+     */
     public OVProduit(int idProduit, String nomProduit, OVCategorie ovCategorie, double prix) {
         this.id = idProduit;
         this.nomProduit = nomProduit;
@@ -26,26 +24,50 @@ public class OVProduit extends OVObject{
         this.prix = prix;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getNomProduit() {
         return nomProduit;
     }
 
+    /**
+     *
+     * @param nomProduit
+     */
     public void setNomProduit(String nomProduit) {
         this.nomProduit = nomProduit;
     }
 
+    /**
+     *
+     * @return
+     */
     public OVCategorie getOvCategorie() {
         return ovCategorie;
     }
 
+    /**
+     *
+     * @param ovCategorie
+     */
     public void setOvCategorie(OVCategorie ovCategorie) {
         this.ovCategorie = ovCategorie;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getPrix() {
         return prix;
     }
 
+    /**
+     *
+     * @param prix
+     */
     public void setPrix(double prix) {
         this.prix = prix;
     }

@@ -1,30 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package SmartShopping.OV;
 
 import java.util.ArrayList;
-import org.json.JSONException;
-import org.json.JSONObject;
 /**
- *
- * @author TheNabo1
+ * La classe RepProduit est la classe de réponses des requêtes utilisant des objets {@link OVProduit}.
+ * @author Team SmartShopping
  */
 public class RepProduit extends OVRep {
     
     private ArrayList<OVProduit> listeProduit; 
 
+    /**
+     *
+     */
     public RepProduit(){
-        this.listeProduit = new ArrayList<OVProduit>();
+        this.listeProduit = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<OVProduit> getListeProduit() {
         return listeProduit;
     }
 
+    /**
+     *
+     * @param listeProduit
+     */
     public void setListeProduit(ArrayList<OVProduit> listeProduit) {
         this.listeProduit = listeProduit;
     }

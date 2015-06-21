@@ -2,24 +2,25 @@ package SmartShopping.OV;
 
 import java.util.ArrayList;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Shinthu
+ * La classe RepPromotion est la classe de réponses des requêtes utilisant des objets {@link OVPromotion}.
+ * @author Team SmartShopping
  */
 public class RepPromotion extends OVRep {
 
-    private ArrayList<OVPromotion> listePromotion; 
+    private final ArrayList<OVPromotion> listePromotion; 
 
+    /**
+     *
+     */
     public RepPromotion(){
-        this.listePromotion = new ArrayList<OVPromotion>();
+        this.listePromotion = new ArrayList<>();
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList<OVPromotion> getListePromotion() {
         return this.listePromotion;
     }

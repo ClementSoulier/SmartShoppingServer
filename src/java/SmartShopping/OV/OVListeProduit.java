@@ -3,45 +3,85 @@ package SmartShopping.OV;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * La classe OVListeProduit permet de représenter élements des produits dans la liste (coché, à supprimer etc...).
+ * @author Team SmartShopping
+ */
 public class OVListeProduit extends OVObject {
 	private Boolean coche;
 	private Boolean supprime;
 	private Integer idProduit;
 	private Integer idListe;//idSmartList
 	
-	public Boolean getCoche() {
+    /**
+     *
+     * @return
+     */
+    public Boolean getCoche() {
 		return coche;
 	}
 
-	public void setCoche(Boolean coche) {
+    /**
+     *
+     * @param coche
+     */
+    public void setCoche(Boolean coche) {
 		this.coche = coche;
 	}
 
-	public Boolean getSupprime() {
+    /**
+     *
+     * @return
+     */
+    public Boolean getSupprime() {
 		return supprime;
 	}
 
-	public void setSupprime(Boolean supprime) {
+    /**
+     *
+     * @param supprime
+     */
+    public void setSupprime(Boolean supprime) {
 		this.supprime = supprime;
 	}
 
-	public Integer getIdProduit() {
+    /**
+     *
+     * @return
+     */
+    public Integer getIdProduit() {
 		return idProduit;
 	}
 
-	public void setIdProduit(Integer idProduit) {
+    /**
+     *
+     * @param idProduit
+     */
+    public void setIdProduit(Integer idProduit) {
 		this.idProduit = idProduit;
 	}
 
-	public Integer getIdListe() {
+    /**
+     *
+     * @return
+     */
+    public Integer getIdListe() {
 		return idListe;
 	}
 
-	public void setIdListe(Integer idListe) {
+    /**
+     *
+     * @param idListe
+     */
+    public void setIdListe(Integer idListe) {
 		this.idListe = idListe;
 	}
 
-	public OVListeProduit(String jsonStr){
+    /**
+     *
+     * @param jsonStr
+     */
+    public OVListeProduit(String jsonStr){
 
         try 
         {
@@ -59,7 +99,14 @@ public class OVListeProduit extends OVObject {
         }
 	}
 
-	public OVListeProduit(Boolean coche, Boolean supprime, Integer idProduit,
+    /**
+     *
+     * @param coche
+     * @param supprime
+     * @param idProduit
+     * @param idListe
+     */
+    public OVListeProduit(Boolean coche, Boolean supprime, Integer idProduit,
 			Integer idListe) {
 		super();
 		this.coche = coche;

@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SmartShopping.OV;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
- * @author TheNabo1
+ * La classe OVUtilisateur permet de représenter un utilisateur.
+ * Dans le cas de SmartShopping, l'identifiant de l'utilisateur est lié à l'IMEI du téléphone. 
+ * @author Team SmartShopping
  */
 public class OVUtilisateur extends OVObject {
    
+    /**
+     *
+     * @param jsonStr
+     */
     public OVUtilisateur(String jsonStr) {
 
         try {
@@ -26,6 +24,11 @@ public class OVUtilisateur extends OVObject {
         } catch (JSONException ex) {
         }
     }
+
+    /**
+     *
+     * @param id
+     */
     public OVUtilisateur(int id){
         this.id = id;
     }

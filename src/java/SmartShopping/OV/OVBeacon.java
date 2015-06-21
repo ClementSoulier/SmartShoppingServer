@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SmartShopping.OV;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- *
- * @author TheNabo1
+ * La classe OVBeacon permet de représenter les capteurs beacons.
+ * Le minor et le major sont des données fixes du capteur. 
+ * @author Team SmartShopping
  */
 public class OVBeacon extends OVObject {
 
@@ -19,6 +15,10 @@ public class OVBeacon extends OVObject {
     private int major;
     private int minor;
 
+    /**
+     * Constructeur d'OVBeacon à partir d'une chaîne JSON.
+     * @param jsonStr
+     */
     public OVBeacon(String jsonStr) {
 
         try {
@@ -33,6 +33,9 @@ public class OVBeacon extends OVObject {
         }
     }
     
+    /**
+     * Constructeur par défaut. 
+     */
     public OVBeacon() {
         this.id = 1;
         this.uuid = "test";
@@ -40,6 +43,13 @@ public class OVBeacon extends OVObject {
         this.minor = 1;
     }
 
+    /**
+     *
+     * @param idBeacon
+     * @param uuid
+     * @param major
+     * @param minor
+     */
     public OVBeacon(Integer idBeacon, String uuid, int major, int minor) {
         this.idBeacon = idBeacon;
         this.uuid = uuid;
@@ -47,35 +57,66 @@ public class OVBeacon extends OVObject {
         this.minor = minor;
     }
     
-
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return idBeacon;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.idBeacon = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUuid() {
         return uuid;
     }
 
+    /**
+     *
+     * @param uuid
+     */
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMajor() {
         return major;
     }
 
+    /**
+     *
+     * @param major
+     */
     public void setMajor(int major) {
         this.major = major;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMinor() {
         return minor;
     }
 
+    /**
+     *
+     * @param minor
+     */
     public void setMinor(int minor) {
         this.minor = minor;
     }

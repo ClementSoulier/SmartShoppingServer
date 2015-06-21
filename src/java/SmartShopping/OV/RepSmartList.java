@@ -1,16 +1,26 @@
 package SmartShopping.OV;
 
-import org.json.JSONException;
-
+/**
+ * La classe RepSmartList est la classe de réponses des requêtes utilisant des objets {@link OVSmartList}.
+ * @author Team SmartShopping
+ */
 public class RepSmartList extends OVRep{
 
 	private OVSmartList smartList;
 	
-	public OVSmartList getSmartList() {
+    /**
+     *
+     * @return
+     */
+    public OVSmartList getSmartList() {
 		return smartList;
 	}
 
-	public void setSmartList(OVSmartList smartList) {
+    /**
+     *
+     * @param smartList
+     */
+    public void setSmartList(OVSmartList smartList) {
 		this.smartList = smartList;
 	}
 

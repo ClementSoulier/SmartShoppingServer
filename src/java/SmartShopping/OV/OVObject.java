@@ -5,18 +5,40 @@ import org.json.JSONObject;
 
 import com.google.gson.Gson;
 
+/**
+ * OVObject est la classe mère de tous les objets à représenter. 
+ * Elle définit les attributs obligatoires comme l'identifiant (id) ainsi que la méthode permettant d'écrire l'objet sous forme de chaîne JSON.
+ * @author Team SmartShopping
+ */
 public class OVObject {
-	protected int id; 
+ 
+    /**
+     *
+     */
+    protected int id; 
 	
-	public int getId() {
+    /**
+     *
+     * @return
+     */
+    public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+    /**
+     *
+     * @param id
+     */
+    public void setId(int id) {
 		this.id = id;
 	}
 
-	public JSONObject toJSON() throws JSONException{
+    /**
+     *
+     * @return
+     * @throws JSONException
+     */
+    public JSONObject toJSON() throws JSONException{
 		String jsonSTR  = new Gson().toJson(this);
 		JSONObject json = new JSONObject(jsonSTR);
 		return json;

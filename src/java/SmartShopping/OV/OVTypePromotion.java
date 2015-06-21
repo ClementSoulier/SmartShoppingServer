@@ -1,27 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package SmartShopping.OV;
 
 /**
- *
- * @author Shinthu
+ * La classe OVTypePromotion permet de représenter le type des promotions.
+ * @author Team SmartShopping
  */
 public class OVTypePromotion extends OVObject{
 
     private String libelleTypePromotion; 
 
+    /**
+     *
+     * @param libelleTypePromotion
+     */
     public OVTypePromotion(String libelleTypePromotion) {
         this.libelleTypePromotion = libelleTypePromotion;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getLibelleTypePromotion() {
         return libelleTypePromotion;
     }
 
+    /**
+     *
+     * @param libelleTypePromotion
+     */
     public void setLibelleTypePromotion(String libelleTypePromotion) {
         this.libelleTypePromotion = libelleTypePromotion;
     }

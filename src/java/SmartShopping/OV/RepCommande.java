@@ -8,17 +8,25 @@ package SmartShopping.OV;
 import java.util.ArrayList;
 
 /**
- *
- * @author TheNabo1
+ * La classe RepCommande est la classe de réponses des requêtes utilisant des objets {@link OVCommande}.
+ * @author Team SmartShopping
  */
 public class RepCommande extends OVRep {
  
     private ArrayList<OVCommande> lstCommandes;
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<OVCommande> getLstCommandes() {
         return lstCommandes;
     }
 
+    /**
+     *
+     * @param lstCommandes
+     */
     public void setLstCommandes(ArrayList<OVCommande> lstCommandes) {
         this.lstCommandes = lstCommandes;
     }
